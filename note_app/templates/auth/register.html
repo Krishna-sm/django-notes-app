@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+
+{%  block head %}
+<title>Register Page</title>
+{% endblock %}
+
+{%  block content %}
+
+                <div class="container py-5">
+                    <div class="col-lg-4  col-md-9 p-4 rounded card mx-auto">
+                        <div class="mb-3">
+                            <label for="name">Name <span class="text-danger">*</span> </label>
+                            <input type="text" class="form-control" placeholder="Enter Your Name" id="name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email">Email <span class="text-danger">*</span> </label>
+                            <input type="email" class="form-control" placeholder="Enter Email Address" id="email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password">Password <span class="text-danger">*</span> </label>
+                            <input type="password" class="form-control" placeholder="Enter Password" id="password">
+                        </div>
+                        <div class="mb-3">
+                            <button style="width: 100%;" class="btn btn-primary">Register</button>
+                        </div>
+                        <div class="mb-3">
+                            <p class="text-end">
+                                Already Have An Account ? <a href="{% url 'login' %}" class="text-primary">Login</a>
+                            </p>
+                        </div>
+                       
+                    </div>
+                </div>
+
+{% endblock %}
+
+
+{%  block footer %}
+{% endblock %}
