@@ -7,14 +7,52 @@
 {%  block content %}
 
             <div class="container py-5">
+                  {% include 'components/messages.html' %}
+
               {% if cards %}
               {% for card in cards %}
               <div class="mb-3 card px-4 py-2  col-lg-5 col-md-10 mx-auto">
                <h1 class="card-header">{{card.title}}</h1>
                <p class="card-body">{{card.description}}</p>
                <div class="card-footer">
-                   <button class="btn btn-danger btn-sm">Delete</button>
-                   <button class="btn btn-warning btn-sm">Edit</button>
+                   <a href="{% url 'deleteById' id=card.id %}" class="btn btn-danger btn-sm">Delete</a>
+                   <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal{{card.id}}" class="btn btn-warning btn-sm">Edit</button>
+
+
+                   <!-- Modal -->
+<div class="modal fade" id="exampleModal{{card.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Note</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form action="{% url 'updateById' id=card.id %}" method="post" class="container">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+              <label for="title">Title <span class="text-danger">*</span> </label>
+              <input name="title" value="{{card.title}}" type="text" class="form-control" id="title" placeholder="Enter Todo Title">
+          </div>
+          <div class="mb-3">
+              <label for="desc">Description <span class="text-danger">*</span> </label>
+              <textarea name="description" rows="5" class="form-control" id="desc" placeholder="Enter Todo Description">{{card.description}}</textarea>
+          </div>
+          <div class="mb-3">
+              <button type="submit" style="width: 100%;" class="btn btn-warning">Update Todo</button>
+          </div>
+      </form>
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
                </div>
            </div>
               {% endfor %}

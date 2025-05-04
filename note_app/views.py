@@ -93,3 +93,28 @@ def logoutView(req):
     logout(req)
     messages.success(req,"Logout Success")
     return redirect("/login/")
+
+
+def deleteNoteView(req,id):
+    if not req.user.is_authenticated:
+        return redirect("/")
+    note =Note.objects.filter(id=id).first()
+    note.delete()
+    messages.success(req,"Delete Success")
+    return redirect("/notes/")
+
+
+def updateNoteView(req,id):
+    if not req.user.is_authenticated:
+        return redirect("/")
+    title = req.POST.get("title","")
+    description = req.POST.get("description","")
+    note =Note.objects.filter(id=id).first()
+    note.title = title
+    note.description = description
+    note.save()
+    messages.success(req,"Update Success")
+    return redirect("/notes/")
+
+
+          
