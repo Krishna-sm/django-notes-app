@@ -7,7 +7,15 @@
 {%  block content %}
 
         <div class="container py-5">
-            <form class="container">
+
+            <div class="mb-3">
+                   <h1> Hi, {{user.first_name | title}}</h1>
+
+            </div>
+
+            <form method="post" class="container">
+                {% csrf_token %}
+                {% include "components/messages.html" %}
                 <div class="mb-3">
                     <label for="title">Title <span class="text-danger">*</span> </label>
                     <input name="title" type="text" class="form-control" id="title" placeholder="Enter Todo Title">

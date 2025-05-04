@@ -7,23 +7,32 @@
 {%  block content %}
 
                 <div class="container py-5">
-                    <div class="col-lg-4  col-md-9 p-4 rounded card mx-auto">
+
+                    
+                    
+                    <form method='post' class="col-lg-4  col-md-9 p-4 rounded card mx-auto">
+                       
+                        {% include 'components/messages.html' %}
+
+                        
+
+                        {% csrf_token %}
                         <div class="mb-3">
                             <label for="name">Name <span class="text-danger">*</span> </label>
-                            <input type="text" class="form-control" placeholder="Enter Your Name" id="name">
+                            <input type="text" name="name" class="form-control" placeholder="Enter Your Name" id="name">
                         </div>
 
                         <div class="mb-3">
                             <label for="email">Email <span class="text-danger">*</span> </label>
-                            <input type="email" class="form-control" placeholder="Enter Email Address" id="email">
+                            <input type="email" name="email" class="form-control" placeholder="Enter Email Address" id="email">
                         </div>
 
                         <div class="mb-3">
                             <label for="password">Password <span class="text-danger">*</span> </label>
-                            <input type="password" class="form-control" placeholder="Enter Password" id="password">
+                            <input type="password" name="password" class="form-control" placeholder="Enter Password" id="password">
                         </div>
                         <div class="mb-3">
-                            <button style="width: 100%;" class="btn btn-primary">Register</button>
+                            <button style="width: 100%;" type="submit" class="btn btn-primary">Register</button>
                         </div>
                         <div class="mb-3">
                             <p class="text-end">
@@ -31,7 +40,7 @@
                             </p>
                         </div>
                        
-                    </div>
+                    </form>
                 </div>
 
 {% endblock %}

@@ -7,16 +7,20 @@
 {%  block content %}
 
             <div class="container py-5">
-               {% for i in cards %}
-               <div class="mb-3 card px-4 py-2  col-lg-5 col-md-10 mx-auto">
-                <h1 class="card-header">card title</h1>
-                <p class="card-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum asperiores ad qui?</p>
-                <div class="card-footer">
-                    <button class="btn btn-danger btn-sm">Delete</button>
-                    <button class="btn btn-warning btn-sm">Edit</button>
-                </div>
-            </div>
-               {% endfor %}
+              {% if cards %}
+              {% for card in cards %}
+              <div class="mb-3 card px-4 py-2  col-lg-5 col-md-10 mx-auto">
+               <h1 class="card-header">{{card.title}}</h1>
+               <p class="card-body">{{card.description}}</p>
+               <div class="card-footer">
+                   <button class="btn btn-danger btn-sm">Delete</button>
+                   <button class="btn btn-warning btn-sm">Edit</button>
+               </div>
+           </div>
+              {% endfor %}
+              {% else %}
+                    <h1>No Notes </h1>
+              {% endif %}
             </div>
 
 {% endblock %}
